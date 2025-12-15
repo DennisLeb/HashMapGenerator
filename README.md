@@ -33,12 +33,12 @@ ___
 
 
 
-* Die Konsole gibt die Daten aus
-* Im Hintergrund wurde die HashMap schon erstellt und die zwei temporären double pointer `fullNames` und `usernames` werden freigegeben
-
-
 <img width="531" height="393" alt="Screenshot 4" src="https://github.com/user-attachments/assets/5ac7f9d7-ec95-4cf8-9fed-a6632335660b" />
 
+
+
+* Die Konsole gibt die Daten aus
+* Im Hintergrund wurde die HashMap schon erstellt und die zwei temporären double pointer `fullNames` und `usernames` werden freigegeben
 
 
 ### 4. Nutzereingabe und Lesen der HashMap
