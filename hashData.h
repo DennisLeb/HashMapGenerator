@@ -11,8 +11,12 @@
 const char *firstNameArr[12] = {"Anton", "Britta", "Daniel", "Emanuel", "Franz", "Kevin", "Magnus", "Mark", "Mikhail", "Nolan", "Paul", "Victor"};
 const char *lastNameArr[12] = {"Armstrong", "Carlsen", "Davis", "Focker", "Frankenstein", "Grayson", "Lasker", "Morphy", "Naroditsky", "Smith", "Tal", "Tolkien"};
 
+// nur durch HashMap zugänglich
+const char *favColourArr[10] = {"Red", "Green", "Blue", "Purple", "Yellow", "Turquoise", "Orange", "Pink", "Brown", "Grey"};
+
 typedef struct user
 {
 	char fullName[MAX_LENGTH];
 	char username[MAX_LENGTH + 15];	// +15 Byte zur Sicherheit
+	char favColour[20];
 } *userData;

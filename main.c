@@ -9,6 +9,10 @@
 	der Nutzer einen username benutzen kann, um den entsprechenden
 	vollen Namen zu finden. */
 
+/* 15/12/2025
+	Zusätzlich wird jedem User eine geheime Lieblingsfarbe zugewiesen, die nur
+	über die HashMap zugänglich ist. */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <malloc.h>
@@ -86,6 +90,7 @@ int main(void) {
 			puts("\n***\tUser found!\t***\n");
 			printf("Full name:\t%s\n", hashMap[index].fullName);
 			printf("Username:\t%s\n\n", hashMap[index].username);
+			printf("Favourite Colour:\t%s\n\n", hashMap[index].favColour);
 		}
 
 		do {
@@ -209,7 +214,8 @@ unsigned long hash(unsigned char* str, int arrLen) {
 // Funktion um usernames als Index mit den vollen Namen zu verknüpfen
 userData fillHashMap(int arrLen, char** fullNames, char** usernames) {
 
-	int hashMapLen = arrLen + 25, index;
+	int hashMapLen = arrLen + 25;
+	int index;
 
 	// Speicher reservieren. Mehr als nötig zur Sicherheit
 	userData hashMap = (userData)calloc(hashMapLen, sizeof(struct user));
@@ -226,10 +232,11 @@ userData fillHashMap(int arrLen, char** fullNames, char** usernames) {
 		while (1) {
 
 			// prüft ob Stelle in der hashmap leer ist. Hierzu wurde calloc() statt malloc() benutzt
-			// Wenn fullName leer ist, muss username auch leer sein
+			// Wenn fullName leer ist, muss alles leer sein
 			if (hashMap[index].fullName[0] == '\0') {
 				sprintf_s(hashMap[index].fullName, sizeof(hashMap[index].fullName), "%s", *(fullNames + i));
 				sprintf_s(hashMap[index].username, sizeof(hashMap[index].username), "%s", *(usernames + i));
+				sprintf_s(hashMap[index].favColour, sizeof(hashMap[index].favColour), "%s", favColourArr[(rand() % 10)]);
 				break;
 			}
 			// andernfalls erhöht sich Index und er sucht weiter nach freier Stelle. Hierzu wurde hashmap mehr Speicher zugewiesen 
@@ -271,9 +278,8 @@ int readHashMap(int arrLen, userData hashMap) {
 	while (strcmp(unameInput, hashMap[index].username) != 0) {	// strcmp() gibt 0 zurück, wenn strings identisch sind
 
 		// bei leerer Stelle existiert der Nutzer nicht
-		// Wenn fullName leer ist, muss username auch leer sein
+		// Wenn fullName leer ist, muss alles leer sein
 		if (hashMap[index].fullName[0] == '\0') {
-			printf("%s", hashMap[index].fullName);
 			return (-1);
 		}
 
